@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>WhoHit</title>
+
+        <link rel="stylesheet" href="./js/jquerymobile/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
+          <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+        <script type="text/javascript" src="./js/jquery-2.2.4.min.js"></script>
+        <script src="./js/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+         <meta name="format-detection" content="telephone=no">
+
+         <!-- script do loading-->
+    <script>
+        function alertar() {
+            setTimeout(function(){window.location='#pageLogin';}, 3000);
+        }
+    </script>
+     <!-- fim do script loading-->
+
+     <!-- script do teclado-->
+    <script>
+        function addNumber(element){
+            return(MascaraMoeda(document.getElementById('valor').value =document.getElementById('valor').value+element.value,',','.',event));
+        }
+        
+        function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
+            var sep = 0;
+            var key = '';
+            var i = j = 0;
+            var len = len2 = 0;
+            var strCheck = '0123456789';
+            var aux = aux2 = '';
+            var whichCode = (window.Event) ? e.which : e.keyCode;
+
+            if ((whichCode == 13) || (whichCode == 0) || (whichCode == 8)) return true;
+                key = String.fromCharCode(whichCode); 
+
+                if (strCheck.indexOf(key) == -1) return false;
+                len = objTextBox.value.length;
+
+                for(i = 0; i < len; i++)
+                    if ((objTextBox.value.charAt(i) != '0') && (objTextBox.value.charAt(i) != SeparadorDecimal)) break;
+                    aux = '';
+
+                    for(; i < len; i++)
+                        if (strCheck.indexOf(objTextBox.value.charAt(i))!=-1) aux += objTextBox.value.charAt(i);
+                        aux += key;
+                        len = aux.length;
+
+                        if (len == 0) objTextBox.value = '';
+
+                        if (len == 1) objTextBox.value = '0'+ SeparadorDecimal + '0' + aux;
+
+                        if (len == 2) objTextBox.value = '0'+ SeparadorDecimal + aux;
+
+                        if (len > 2) {
+                        aux2 = '';
+
+                        for (j = 0, i = len - 3; i >= 0; i--) {
+                            if (j == 3) {
+                                aux2 += SeparadorMilesimo;
+                                j = 0;
+                            }
+
+                            aux2 += aux.charAt(i);
+                            j++;
+                        }
+
+                        objTextBox.value = '';
+                        len2 = aux2.length;
+
+                        for (i = len2 - 1; i >= 0; i--)
+                            objTextBox.value += aux2.charAt(i);
+                            objTextBox.value += SeparadorDecimal + aux.substr(len - 2, len);
+                        }
+
+                        preço=objTextBox.value
+                        return false;
+        }
+
+    </script>
+    <!-- fim do script teclado-->
+    </head>
+
+    <body onload="onDeviceReady()">  
+		
+          <!-- tela de loading-->
+        <div data-role="page" id="pageLoading">
+        <div data-role="main" class="tamanhoMinimo" style="background-color:white;">
+            <br><br><br><br><br><br><br><br>
+            <div style='position:relative; top:-30px; left:0px;'>
+                <img src="img/logo.png" border=0 style="position: absolute ;padding: 50px;padding-left: 15px;height: 60px">
+                <img src="img/gif.gif" style="padding: 70px;padding-left: 15px">
+            </div>
+            <script type="text/javascript">
+                alertar();
+            </script>
+        </div>
+    </div>
+   
+     <!-- tela de login-->
+    <div data-role="page" id="pageLogin">
+    	<img src="img/logo.png" class="designlogo">
+        <br><br><br><br><br><br>
+
+    	<div data-role="main" class="ui-content">
+   			<div data-role="form">
+    				<br><br>
+              		<input type="email" id="loginUser" name="login" value="" placeholder="Digite seu email">
+        			<input type="password" id ="loginSenha" name="senha" value="" placeholder="Digite sua senha"><br>
+
+                <a data-role="button" id="btnEntrar" style="margin: auto; display: block; text-align: center; color:white; font: 13px Gadugi; background-color: #000080; width: 110px; height: 35px;" >entrar</a><br><br>
+
+               		<a style="margin: auto; display: block; font: 15px Gadugi;" href="#pageCadastro">Criar uma conta</a>
+    		</div>
+    	</div>
+    </div>
+
+                 <!-- tela de cadastro de usuario-->
+                <div data-role="page" id="pageCadastro">
+            <div data-role="header" style="border-color:#000080; background-color:#000080;" >
+                <label style="font: 15px Gadugi; text-align: center; color: white;" align="center">Cadastrar conta</label>
+            </div> 
+            <div data-role="main" class="tamanhoMinimo">
+                <form id="cadastro" action="/action_page.php">
+                	<input type="hidden" id="field-id" value="" />
+                    <br>
+
+                    <input type="email" name="email" id="email" value="" placeholder="Email">
+                    <input type="password" name="senha" id="senha" value="" placeholder="Senha">
+                    <input type="text" name="nome completo" id="nome" value="" placeholder="Nome completo">
+                    <input type="date" name="data de nascimento" id="data_nascimento" value="" placeholder="Data de nascimento">
+                    <input type="text" name="CPF" id="cpf" value="" placeholder="CPF">
+                    <input type="text" name="endereco" id="endereco" value="" placeholder="Endereço">
+                    <input type="text" name="bairro" id="bairro" value="" placeholder="Bairro">
+                    <input type="text" name="cidade" id="cidade" value="" placeholder="Cidade">
+                    <input type="text" name="estado" id="estado" value="" placeholder="Estado">
+
+
+                    <br>
+                    <a style="width: 110px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080" data-role="button" id="proximo">Próximo</a>
+                    <a style="width: 110px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080" data-role="button" href="#pageLogin">Voltar</a>
+                </form>
+                
+            </div>
+        </div>
+
+         <!-- tela de cadastro de porteiro-->
+        <div data-role="page" id="pageCadPorteiro">
+            <div data-role="header" style="border-color:#000080; background-color:#000080;" >
+                <label style="font: 15px Gadugi; text-align: center; color: white;" align="center">Cadastrar vídeo porteiro</label>
+            </div>  
+            <div data-role="main" class="tamanhoMinimo">
+                <p style="font: 20px Gadugi">1000@10.0.02</p>
+
+                <form>
+                    <table cellpadding="2" cellspacing="2" border="0">
+                    <tr>
+                        <td colspan="3" align="center"><input type="text" id="valor"; onKeyPress="return(MascaraMoeda(this,'.',',',event))" 
+                        size="45" placeholder="Digite o endereço do vídeo porteiro"></td>
+                    </tr>
+
+                    <tr> 
+                        <td><input type="button" value="1" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="2" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="3" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" value="4" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="5" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="6" style="font:25px Gadugi" onClick=addNumber(this); ></td> 
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" value="7" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="8" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="9" style="font:25px Gadugi" onClick=addNumber(this); ></td> 
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" value="0" style="font:25px Gadugi" onClick=addNumber(this); ></td>
+                        <td><input type="button" value="*" style="font:25px Gadugi" onClick=addNumber(this); ></td> 
+                        <td><input type="button" value="#" style="font:25px Gadugi" onClick=addNumber(this); ></td> 
+                    </tr>
+
+                     </table>
+                    
+                    <br>
+                    <a style="width: 110px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080" data-role="button" href="#pageHome">Conectar</a>
+                    <a style="width: 110px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080" data-role="button" href="#pageCadastro">Voltar</a>
+                </form>
+
+            </div>    
+        </div>
+
+         <!-- tela de pagina principal-->
+        <div data-role="page" id="pageHome">
+            <div data-role="header" style="border-color:#000080; background-color:#000080;" >
+                <label style="font: 20px Gadugi; text-align: center; color: white;" align="center">WhoHit</label>
+            </div>  
+
+            <div data-role="main" class="tamanhoMinimo">
+                <div data-role="navbar" data-iconpos="left">
+                    <ul>
+                        <li><a style=" border-color: #8B8989; background-color: #8B8989; color: white; font: 13px Gadugi" href="#pageConfiguracoes">Configurações</a></li>
+                        <li><a style=" border-color: #8B8989; background-color: #8B8989; color: white; font: 13px Gadugi" href="#pageAjuda">Ajuda</a></li>
+                    </ul>
+                </div>
+                    <iframe style="height:640px;width: 360px" src="./whohitServer.html">
+                    </iframe>
+                 </div>  
+        </div>
+        
+        <!-- tela de pagina conta-->
+        <div data-role="page" id="pageConfiguracoes">
+            <div data-role="header" style="background-color:#000080;" >
+                <label style="font: 20px Gadugi; text-align: center; color: white; background-color: #000080" align="center">Configurações</label>
+            </div>  
+
+            <div data-role="main" class="tamanhoMinimo">
+            
+                <a href="#pageHome " data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+                <br>
+
+                <img src="img/Gear-256.png" class="imgPage7">
+
+                <br><br><br><br><br>
+
+                <a style="margin: auto; display: block; width: 150px; text-align: center; font: 13px Gadugi; color: white; background-color: #000080" data-role="button" href="#pageGerenciarPorteiro">Vídeo porteiro</a>
+                <a style="margin: auto; display: block; width: 150px; text-align: center; font: 13px Gadugi; color: white; background-color: #000080" data-role="button" href="#pageGerenciarConta">Conta</a><br>
+            </div>
+        </div>
+
+        <!-- tela de pagina ajuda-->
+        <div data-role="page" id="pageAjuda">
+            <div data-role="header" style="background-color: #000080">
+                <label style="font: 20px Gadugi; text-align: center; color: white; background-color: #000080" align="center">Ajuda</label>
+            </div>
+            <div data-role="main" class="tamanhoMinimo">
+                <a href="#pageHome " data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+                <img src="img/347a3b23.png" border="0" class="imgPage8"><br><br><br><br><br><br>
+                
+                <label style="font: 18px Gadugi; text-align:center;">
+                    <p>
+                        Entre em contato em caso de dúvida,<br>
+                        através do telefone ou Email:<br>
+                        Email:<br>
+                        <a href="sac.whohit@emphit.com">sac.whohit@emphit.com</a><br>
+                        Telefone: 0800 666 666
+                    </p>
+                </label>
+            </div>        
+        </div>
+		
+        <!-- tela de pagina gerenciamento de conta-->
+		<div data-role="page" id="pageGerenciarConta">
+            <!-- email,senha,nome,data_nascimento,cpf,endereco,bairro,cidade,estado -->
+			<div data-role="header" style="background-color: #000080">
+				<label style="font: 20px Gadugi; text-align: center; color: white; background-color: #000080" align="center">Gerenciamento de Conta</label>
+			</div>	
+			<div data-role="main" class="tamanhoMinimo">
+                <a href="#pageConfiguracoes" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+                 <a data-role="button" id="btn-alteraDados" style="width: 140px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080" href="#pageAlteraDados">Mude seus dados</a>
+                 <button id="btn-sair" style="width: 140px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080">Sair da conta</button>
+       		</div>
+		</div>	
+
+        <!-- tela de pagina gerenciamento de porteiro-->
+		<div data-role="page" id="pageGerenciarPorteiro">
+			<div data-role="header" style="background-color: #000080">
+				<label style="font: 20px Gadugi; text-align: center; color: white; background-color: #000080" align="center">Gerenciamento de Porteiro</label>
+			</div>
+			<div data-role="main" class="tamanhoMinimo">
+				<a href="#pageConfiguracoes" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+			</div>
+		</div>	
+
+			<div data-role="page" id="pageAlteraDados">
+				<div data-role="header" style="background-color: #000080">
+					<label style="font: 20px Gadugi; text-align: center; color: white; background-color: #000080" align="center">Mude seus dados</label>
+				</div>	
+				<div data-role="main" class="tamanhoMinimo">
+					<a href="#pageGerenciarConta" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+					<label style="color:white;font-family: Arial 12px;background-color: #000080"><ins>Nome</ins></label>
+               		<input id="txtNome" type="text">
+                	<label style="color:white;font-family: Arial 12px;background-color: #000080"><ins>Email</ins></label>
+                	<input id="txtEmail" type="text">
+                	<label style="color:white;font-family: Arial 12px;background-color: #000080"><ins>Endereço</ins></label>
+                	<input id="txtEndereco" type="text">
+                	<label style="color:white;font-family: Arial 12px;background-color: #000080"><ins>Bairro</ins></label>
+                	<input id="txtBairro" type="text">
+                	<label style="color:white;font-family: Arial 12px;background-color: #000080"><ins>Cidade</ins></label>
+                	<input id="txtCidade" type="text">
+                	<label style="color:white;font-family: Arial 12px;background-color: #000080"><ins>Estado</ins></label>
+                	<input id="txtEstado" type="text">
+                	<button id="btn-salvaAltera" style="width: 150px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080">Salvar alteraçôes</button>
+                	<button id="btn-cancelaAlteracao" style="width: 150px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080">Cancelar alterações</button>
+				</div>
+			</div>
+			<!-- JS -->
+        <script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/conection.js"></script>
+		<script type="text/javascript" src="js/Logout.js"></script>
+    	<!-- JS -->
+		
+    </body>
+</html>
