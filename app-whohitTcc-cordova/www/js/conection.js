@@ -9,21 +9,10 @@ var App = {
         document.getElementById('btnEntrar').addEventListener('click', App.newLogin);
 		document.getElementById('btn-salvaAltera').addEventListener('click', App.updateValues);
         document.getElementById('proximo').addEventListener('click', App.insertValues);
-		document.addEventListener("pause", App.onPause, false);
-		document.addEventListener("resume", App.onResume, false);
-		document.addEventListener("backbutton", yourCallbackFunction, false);
 		
-		FCMPlugin.subscribeToTopic('testeWhohit')
+		FCMPlugin.subscribeToTopic('tstWhohit')
     }
 	,
-	onPause: function() {
-    // Handle the pause event
-	},
-	onResume: function() {
-     setTimeout(function() {
-          // TODO: do your thing!
-        }, 0);
-	},
 
     createDatabase: function(){
 	    App.db = window.openDatabase("dbWhohit", "1.0", "dbWhohit", 1000000);
@@ -34,7 +23,6 @@ var App = {
     newLogin:function(){
         App.db.transaction(function (tx){
             var ssql = "select * from usuario where email = '" + document.getElementById('loginUser').value + "' AND senha = '"+ document.getElementById('loginSenha').value +"'";
-            alert(ssql);
             tx.executeSql(ssql, [], function (tx, result) {
                 if(result.rows.length) {
 					console.log(result);
@@ -102,10 +90,10 @@ var App = {
 		}
     },
 	updateValues:function(){
-		var update = "UPDATE usuario set nome = ?, email = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?";
 		App.db.transaction(function (tx){
+		var update = "UPDATE usuario set nome = ?, email = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?";
 			tx.executeSql(update,[document.getElementById('nome').value,document.getElementById('email').value,document.getElementById('endereco').value,document.getElementById('bairro').value,document.getElementById('cidade').value,document.getElementById('estado').value]);
-			alert('teste');
+			alert('Dados salvos com sucessso!!');
 		});
 	}
 	/*
