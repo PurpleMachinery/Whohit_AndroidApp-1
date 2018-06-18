@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script type="text/javascript" src="./js/jquery-2.2.4.min.js"></script>
         <script src="./js/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
-        <meta name="format-detection" content="telephone=no">
+       <!-- <meta name="format-detection" content="telephone=no">-->
 
          <!-- script do loading-->
     <script>
@@ -86,12 +86,11 @@
 		
           <!-- tela de loading-->
         <div data-role="page" id="pageLoading">
-        <div data-role="main" class="tamanhoMinimo" style="background-color:white;">
-            <br><br><br><br><br><br><br><br>
-            <div style='position:relative; top:-30px; left:0px;'>
-                <img src="img/logo.png" border=0 style="position: absolute ;padding: 50px;padding-left: 15px;height: 60px">
-                <img src="img/gif.gif" style="padding: 70px;padding-left: 15px">
-            </div>
+        <div data-role="main" class="tamanhoMinimo" style="background-color: white">
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+                <img src="img/gif.gif" style="width: 200px;position:center"><br>
+                <img src="img/giphy.gif" style="background-color: white;position: relative;">
+            
             <script type="text/javascript">
                 alertar();
             </script>
@@ -126,15 +125,15 @@
                 	<input type="hidden" id="field-id" value="" />
                     <br>
 
-                    <input type="email" name="email" id="email" value="" placeholder="Email">
-                    <input type="password" name="senha" id="senha" value="" placeholder="Senha">
-                    <input type="text" name="nome completo" id="nome" value="" placeholder="Nome completo">
-                    <input type="date" name="data de nascimento" id="data_nascimento" value="" placeholder="Data de nascimento">
-                    <input type="text" name="CPF" id="cpf" value="" placeholder="CPF">
-                    <input type="text" name="endereco" id="endereco" value="" placeholder="Endereço">
-                    <input type="text" name="bairro" id="bairro" value="" placeholder="Bairro">
-                    <input type="text" name="cidade" id="cidade" value="" placeholder="Cidade">
-                    <input type="text" name="estado" id="estado" value="" placeholder="Estado">
+                    <input type="email" name="email" id="email" value="" placeholder="Email"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                    <input type="password" name="senha" id="senha" value="" placeholder="Senha"pattern=".{6,}" title="Six or more characters">
+                    <input type="text" name="nome completo" id="nome" value="" placeholder="Nome completo"required>
+                    <input type="date" name="data de nascimento" id="data_nascimento" value="dd/mm/aaaa" placeholder="Data de nascimento"required>
+                    <input type="text" name="CPF" id="cpf" value="" placeholder="CPF"required>
+                    <input type="text" name="endereco" id="endereco" value="" placeholder="Endereço"required>
+                    <input type="text" name="bairro" id="bairro" value="" placeholder="Bairro"required>
+                    <input type="text" name="cidade" id="cidade" value="" placeholder="Cidade"required>
+                    <input type="text" name="estado" id="estado" value="" placeholder="Estado"required>
 
 
                     <br>
@@ -226,8 +225,6 @@
                 <img src="img/Gear-256.png" class="imgPage7">
 
                 <br><br><br><br><br>
-
-                <a style="margin: auto; display: block; width: 150px; text-align: center; font: 13px Gadugi; color: white; background-color: #000080" data-role="button" href="#pageGerenciarPorteiro">Vídeo porteiro</a>
                 <a style="margin: auto; display: block; width: 150px; text-align: center; font: 13px Gadugi; color: white; background-color: #000080" data-role="button" href="#pageGerenciarConta">Conta</a><br>
             </div>
         </div>
@@ -264,17 +261,7 @@
                  <a data-role="button" id="btn-alteraDados" style="width: 140px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080" href="#pageAlteraDados">Mude seus dados</a>
                  <button id="btn-sair" style="width: 140px; margin: auto; display: block; text-align: center; font: 13px Gadugi; color: white; background-color:#000080">Sair da conta</button>
        		</div>
-		</div>	
-
-        <!-- tela de pagina gerenciamento de porteiro-->
-		<div data-role="page" id="pageGerenciarPorteiro">
-			<div data-role="header" style="background-color: #000080">
-				<label style="font: 20px Gadugi; text-align: center; color: white; background-color: #000080" align="center">Gerenciamento de Porteiro</label>
-			</div>
-			<div data-role="main" class="tamanhoMinimo">
-				<a href="#pageConfiguracoes" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
-			</div>
-		</div>	
+		</div>
 
 			<div data-role="page" id="pageAlteraDados">
 				<div data-role="header" style="background-color: #000080">
