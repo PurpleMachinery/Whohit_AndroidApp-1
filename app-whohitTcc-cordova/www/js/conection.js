@@ -9,7 +9,7 @@ var App = {
         document.getElementById('btnEntrar').addEventListener('click', App.newLogin);
 		document.getElementById('btn-salvaAltera').addEventListener('click', App.updateValues);
         document.getElementById('proximo').addEventListener('click', App.insertValues);
-        document.getElementById('btn-conectar').addEventListener('click', app.insertValues);
+        document.getElementById('btn-conectar').addEventListener('click', App.insertValues);
 		
 		FCMPlugin.subscribeToTopic('tstWhohit')
     }
@@ -100,9 +100,38 @@ var App = {
     },
 	updateValues:function(){
 		App.db.transaction(function (tx){
-		var update = "UPDATE usuario set nome = ?, email = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?";
-			tx.executeSql(update,[document.getElementById('nome').value,document.getElementById('email').value,document.getElementById('endereco').value,document.getElementById('bairro').value,document.getElementById('cidade').value,document.getElementById('estado').value]);
-			alert('Dados salvos com sucessso!!');
+			var nome, email, endereco, bairro, cidade, estado;
+			//var update = "UPDATE usuario set nome = ?, email = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?";
+			//tx.executeSql(update,[document.getElementById('nome').value,document.getElementById('email').value,document.getElementById('endereco').value,document.getElementById('bairro').value,document.getElementById('cidade').value,document.getElementById('estado').value]);
+			tx.executeSql("select * from usuario where email = '"+document.getElementById('loginUser').value+"'", [], function(tx, result){
+				nome = result.rows[0].nome;
+				email = result.rows[0].email;
+				endereco = result.rows[0].endereco;
+				bairro =  result.rows[0].bairro;
+				cidade =  result.rows[0].cidade;
+				estado = result.rows[0].estado;		
+				if(document.getElementById('txtEstado').value!=""){
+					estado = document.getElementById('txtEstado').value;
+				}
+				if(document.getElementById('txtNome').value!=""){
+					nome = document.getElementById('txtNome').value;					
+				}
+				if(document.getElementById('txtEmail').value!=""){
+					email = document.getElementById('txtEmail').value;					
+				}
+				if(document.getElementById('txtEndereco').value!=""){
+					endereco = document.getElementById('txtEndereco').value;					
+				}
+				if(document.getElementById('txtBairro').value!=""){
+					bairro = document.getElementById('txtBairro').value;					
+				}
+				if(document.getElementById('txtCidade').value!=""){
+					cidade = document.getElementById('txtCidade').value;					
+				}
+				var uup = "update usuario set nome = '"+nome+"', email = '"+email+"', endereco = '"+endereco+"', bairro = '"+bairro+"', cidade = '"+cidade+"', estado = '"+estado+"' where email = '"+document.getElementById('loginUser').value+"'";
+				tx.executeSql(uup);
+				alert('Dados salvos com sucessso!!');
+			});
 		});
 	}
 	/*
