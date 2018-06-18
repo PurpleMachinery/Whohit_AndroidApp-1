@@ -9,6 +9,7 @@ var App = {
         document.getElementById('btnEntrar').addEventListener('click', App.newLogin);
 		document.getElementById('btn-salvaAltera').addEventListener('click', App.updateValues);
         document.getElementById('proximo').addEventListener('click', App.insertValues);
+        document.getElementById('btn-conectar').addEventListener('click', app.insertValues);
 		
 		FCMPlugin.subscribeToTopic('tstWhohit')
     }
